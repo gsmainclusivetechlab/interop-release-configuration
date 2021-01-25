@@ -3,12 +3,15 @@
 To run the ITP:
 
 1. Adjust .env, app.env and mysql.env for your environment
-2. Adjust nginx.conf to replace "example.com" with your own URL (in 4 locations)
+2. Adjust nginx.conf to replace "example.com" with your own URL
 3. Adjust docker-compose.yml:
 
-   1. Change `services.app.ports` if you do not wish to serve on ports 80/443
-   2. Uncomment `services.mailhog` if you wish to run the test mail server (and adjust ports if desired)
-   3. Uncomment `services.phpmyadmin` if you wish to run PHPMyAdmin (and adjust ports if desired)
+   1. Select a specific
+      [version](https://hub.docker.com/repository/docker/gsmainclusivetechlab/interop-test-platform/tags?page=1&ordering=last_updated&name=v)
+      to deploy instead of using `v1.1.4` under `x-common-php.image`
+   2. Change `services.app.ports` if you do not wish to serve on ports 80/443
+   3. Uncomment `services.mailhog` if you wish to run the test mail server (and adjust ports if desired)
+   4. Uncomment `services.phpmyadmin` if you wish to run PHPMyAdmin (and adjust ports if desired)
 
 4. Launch the platform with:
 

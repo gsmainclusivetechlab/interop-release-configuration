@@ -1,7 +1,7 @@
 version: '3.7'
 
 x-common-php: &common-php
-  image: gsmainclusivetechlab/interop-test-platform:latest
+  image: gsmainclusivetechlab/interop-test-platform:v1.1.4
   restart: always
   env_file: app.env
   depends_on:
@@ -64,23 +64,23 @@ services:
       "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait
       $${!}; done;'"
 
-  mailhog:
-    image: mailhog/mailhog
-    restart: always
-    ports:
-      - '8086:8025'
+  # mailhog:
+  #   image: mailhog/mailhog
+  #   restart: always
+  #   ports:
+  #     - '8086:8025'
 
-  phpmyadmin:
-    depends_on:
-      - mysqldb
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
-    environment:
-      - PMA_HOST=mysqldb
-    ports:
-      - '8080:80'
-    volumes:
-      - /sessions
+  # phpmyadmin:
+  #   depends_on:
+  #     - mysqldb
+  #   image: phpmyadmin/phpmyadmin
+  #   container_name: phpmyadmin
+  #   environment:
+  #     - PMA_HOST=mysqldb
+  #   ports:
+  #     - '8080:80'
+  #   volumes:
+  #     - /sessions
 
 volumes:
   mysqldata: {}
