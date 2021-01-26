@@ -34,7 +34,7 @@ Note that if you want to update an existing database, you should use `php artisa
 
 ```bash
 docker-compose exec certbot sh
-certbot certonly --webroot -w /var/www/certbot -d ${PROJECT_DOMAIN} --register-unsafely-without-email --agree-tos
+certbot certonly --webroot -w /var/www/certbot -d ${PROJECT_DOMAIN} -m you@your-domain.com
 ```
 
 After running this, edit `nginx.conf` to uncomment the entries labelled `ssl_certificate` and `ssl_certificate_key` and remove the self-signed localhost keys instead.
