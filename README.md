@@ -2,13 +2,13 @@
 
 To run the ITP:
 
-1. Adjust .env, app.env and mysql.env for your environment
+1. Adjust .env, app.env and mysql.env for your environment (see below for help with generating `APP_KEY`)
 2. Adjust nginx.conf to replace "example.com" with your own URL
 3. Adjust docker-compose.yml:
 
    1. Select a specific
       [version](https://hub.docker.com/repository/docker/gsmainclusivetechlab/interop-test-platform/tags?page=1&ordering=last_updated&name=v)
-      to deploy instead of using `v1.1.4` under `x-common-php.image`
+      to deploy instead of using `v1.2.0` under `x-common-php.image`
    2. Change `services.app.ports` if you do not wish to serve on ports 80/443
    3. Uncomment `services.mailhog` if you wish to run the test mail server (and adjust ports if desired)
    4. Uncomment `services.phpmyadmin` if you wish to run PHPMyAdmin (and adjust ports if desired)
@@ -42,3 +42,14 @@ After running this, edit `nginx.conf` to uncomment the entries labelled `ssl_cer
 7. Seeding configuration [TODO]
 8. Configure locales [TODO]
 9. Configure theming
+
+## Troubleshooting
+
+### Generating APP_KEY
+
+```
+docker-compose exec app sh
+vi .env # add `APP_ENV=` to the bottom of the .env file
+php artisan key:generate
+cat .env # copy APP_ENV outside of here into app.env
+```
