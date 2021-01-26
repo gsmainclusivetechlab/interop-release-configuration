@@ -1,7 +1,7 @@
 version: '3.7'
 
 x-common-php: &common-php
-  image: gsmainclusivetechlab/interop-test-platform:v1.1.4
+  image: gsmainclusivetechlab/interop-test-platform:v1.2.0
   restart: always
   env_file: app.env
   depends_on:
@@ -61,14 +61,14 @@ services:
       - certbot_certs:/etc/letsencrypt
       - certbot_www:/var/www/certbot
     entrypoint:
-      "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait
+      "/bin/sh -c 'trap exit TERM; while :; do certbot renew; chgrp -R 1024 /etc/letsencrypt/live /etc/letsencrypt/archive; chmod -R 750 /etc/letsencrypt/live /etc/letsencrypt/archive; sleep 12h & wait
       $${!}; done;'"
 
-  # mailhog:
-  #   image: mailhog/mailhog
-  #   restart: always
-  #   ports:
-  #     - '8086:8025'
+      # mailhog:
+      #  image: mailhog/mailhog
+      #  restart: always
+      #  ports:
+      #   - '8086:8025'
 
   # phpmyadmin:
   #   depends_on:
