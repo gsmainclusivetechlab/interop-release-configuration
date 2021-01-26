@@ -60,7 +60,7 @@ certbot certonly --webroot -w /var/www/certbot -d ${PROJECT_DOMAIN} -m you@your-
 After running this, edit `nginx.conf` to uncomment the entries labelled `ssl_certificate` and `ssl_certificate_key` and remove the self-signed localhost keys instead.
 
 8. Configure locales [TODO]
-9. Configure theming
+9. Configure theming [TODO]
 
 ## Troubleshooting
 
