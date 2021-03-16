@@ -3,6 +3,8 @@ version: '3.7'
 x-common-php: &common-php
   image: gsmainclusivetechlab/interop-test-platform:v1.2.0
   restart: always
+  environment:
+    PROJECT_DOMAIN: ${PROJECT_DOMAIN}
   env_file: app.env
   depends_on:
     - mysqldb
@@ -17,6 +19,10 @@ x-common-php: &common-php
     - certbot_www:/var/www/certbot
     - storage:/var/www/html/storage/app
     # - ./seeders:/var/www/html/database/seeders
+    # - ./assets/locales:/var/www/html/public/assets/locales
+    # - ./assets/css:/var/www/html/public/assets/css
+    # - ./assets/fonts:/var/www/html/public/assets/fonts
+    # - ./assets/images:/var/www/html/public/assets/images
 
 services:
   app:
