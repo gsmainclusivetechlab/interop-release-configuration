@@ -19,7 +19,8 @@ x-common-php: &common-php
     - certbot_www:/var/www/certbot
     - storage:/var/www/html/storage/app
     # - ./seeders:/var/www/html/database/seeders
-    # - ./assets/locales:/var/www/html/public/assets/locales
+    # - ./locales:/var/www/html/public/assets/locales
+    # - ./tutorial:/var/www/html/public/assets/tutorial
     # - ./assets/css:/var/www/html/public/assets/css
     # - ./assets/fonts:/var/www/html/public/assets/fonts
     # - ./assets/images:/var/www/html/public/assets/images

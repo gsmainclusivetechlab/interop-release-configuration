@@ -58,7 +58,15 @@ docker-compose exec certbot sh
 certbot certonly --webroot -w /var/www/certbot -d ${PROJECT_DOMAIN} -m you@your-domain.com
 ```
 
-After running this, edit `nginx.conf` to uncomment the entries labelled `ssl_certificate` and `ssl_certificate_key` and remove the self-signed localhost keys instead.
+After running this, edit `nginx.conf` to uncomment the entries labelled
+`ssl_certificate` and `ssl_certificate_key` and remove the self-signed
+localhost keys instead.
+
+Alternatively, to use your own certificates directly, you may add the server
+key, certificate and CA certificate to a local directory, then create a
+docker volume to make these certificates accessible inside the running
+container. Finally adjust `nginx.conf` to replace the path for
+`ssl_certificate` and `ssl_certificate_key` to match the volume path.
 
 ## 7. Optional: Configure locales
 
@@ -70,7 +78,17 @@ After running this, edit `nginx.conf` to uncomment the entries labelled `ssl_cer
 - Uncomment the locales volume in `docker-compose.yml` at `x-common-php.volumes[5]`
 - Restart the containers (`docker-compose up --force-recreate`)
 
-## 7. Optional: Configure branding
+## 8. Optional: Configure tutorials
+
+- Copy the tutorial files into your working directory to update them:
+  ```bash
+  docker cp "`docker-compose ps -q app`:/var/www/html/public/assets/tutorial" ./tutorial
+  ```
+- Make any modifications required
+- Uncomment the locales volume in `docker-compose.yml` at `x-common-php.volumes[6]`
+- Restart the containers (`docker-compose up --force-recreate`)
+
+## 9. Optional: Configure branding
 
 - Copy the styling files into your working directory to update them:
   ```bash
@@ -80,7 +98,7 @@ After running this, edit `nginx.conf` to uncomment the entries labelled `ssl_cer
   docker cp "`docker-compose ps -q app`:/var/www/html/public/assets/fonts" ./assets/fonts
   ```
 - Make any modifications required
-- Uncomment the locales volume in `docker-compose.yml` at `x-common-php.volumes[6-8]`
+- Uncomment the locales volume in `docker-compose.yml` at `x-common-php.volumes[7-9]`
 - Restart the containers (`docker-compose up --force-recreate`)
 
 ## Troubleshooting
