@@ -107,7 +107,7 @@ container. Finally adjust `nginx.conf` to replace the path for
 
 ```
 docker-compose exec app sh
-vi .env # add `APP_ENV=` to the bottom of the .env file
+vi .env # add `APP_KEY=` to the bottom of the .env file
 php artisan key:generate
-cat .env # copy APP_ENV outside of here into app.env
+cat .env # copy APP_KEY outside of here into app.env
 ```
